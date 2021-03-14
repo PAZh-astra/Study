@@ -1,0 +1,237 @@
+//2.1
+#include <iostream>
+using namespace std;
+ 
+int main() {
+int n, b, a;
+cin >> n >> b;
+a=n%b;
+if (b-a>a) n-=(b-a);
+else n+=(b-a);
+cout << n;
+	return 0;
+}
+
+
+//2.2
+#include <iostream>
+#include <math.h>
+using namespace std;
+ 
+int main() {
+int a, b;
+cin >> a >> b;
+cout << sqrt(a*a+b*b);
+	return 0;
+}
+
+
+//2.3
+#include <iostream>
+using namespace std;
+ 
+int main() {
+	int abc, a, b, c;
+	cin >> abc;
+	a=abc/100;
+	b=abc/10-a*10;
+	c=abc%10;
+	cout << a+b+c << endl << a*b*c;
+	return 0;
+}
+
+
+//2.4
+#include <iostream>
+using namespace std;
+ 
+int main() {
+int x1, y1, x2, y2, k, b, x, y;
+cin >> x1 >> y1 >> x2 >> y2;
+//y=kx+b
+k=(y2-y1)/(x2-x1);
+b=y2-k*x2;
+cout << "y="<< k << "x+"<< b;
+	return 0;
+}
+
+
+//2.5
+#include <iostream>
+#include <math.h>
+using namespace std;
+ 
+int main() {
+float m, s, n, y, p;
+cin >> n >> y >> p;
+p/=100;
+m = (n * p * pow((1+p),y)) / (12 * (pow(1+p,y) - 1));
+s=m*y*12;
+cout << m << endl << s;
+	return 0;
+}
+
+
+//2.6
+#include <iostream>
+using namespace std;
+ 
+int main() {
+int a, b;
+cin >> a >> b;
+b+=a;
+a=b-a;
+b=b-a;
+cout << a << endl << b;
+	return 0;
+}
+
+
+//2.7
+#include <iostream>
+using namespace std;
+ 
+int main() {
+int abcd, ab, cd;
+cin >> abcd;
+ab=abcd/100;
+cd=abcd%100;
+cout << ab+cd;
+	return 0;
+}
+
+
+//2.8
+#include <iostream>
+#include <math.h>
+using namespace std;
+ 
+int main() {
+int r, h, s, v, c;
+cin >> r >> h >> v >> c;
+//asin(0)=arcsin(0)=pi
+s=asin(0)*r*r+2*r*h*asin(0);
+cout << ceil(v/c);
+	return 0;
+}
+
+
+//2.9 (a)
+#include <iostream>
+using namespace std;
+
+int main() {
+int a, b;
+cin >> a >> b;
+cout << 2*(a+b);
+return 0;
+}
+
+
+//2.9(c)
+#include <iostream>
+using namespace std;
+
+int main() {
+float a, b, c, d;
+cin >> a >> b >> c >> d;
+int P = a+b+c+d;
+cout << "P= " << P << endl;
+return 0;
+}
+
+
+//2.10
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+float r;
+cin >>  r;
+const double PI = acos(-1.0);
+int V = (4/3)*PI*r*r*r;
+int Sp = 4*PI*r*r;
+cout << "V= " <<  V << endl << "Sp="<< Sp« endl;
+return 0;
+}
+
+
+//2.11
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+float r, h;
+cin >> r >> h;
+const double PI = acos(-1.0);
+int V = PI*r*r*h;
+int S1= 2*PI*r*h;
+int S2= PI*r*r;
+int Sp = S1+2*S2;
+cout << "V= " << V << endl << "Sp="<< Sp« endl;
+return 0;
+}
+
+
+//2.12
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+float r, l;
+cin >> r >> l;
+int h= l*l-r*r;
+h= sqrt(h);
+int Sp = r*h;
+cout << "Sp=" << Sp << endl;
+return 0;
+}
+
+
+//2.13
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+float r, h;
+cin >> r >> h;
+int l = h*h+r*r;
+h= sqrt(l);
+const double PI = acos(-1.0);
+int V = (PI*r*r*h)/3;
+int Sp = PI*r*(r+l);
+cout << "V= " << V << endl << "Sp="<< Sp<< endl;
+return 0;
+}
+
+
+//2.14
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+float a, h;
+cin >> a >> h;
+int V = (a*a*h)/(4*sqrt(3));
+int Sp = a*(a*sqrt(3)+6*h);
+cout << "V= " << V << endl << "Sp="<< Sp<< endl;
+return 0;
+}
+
+
+//2.15
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+int a, h, c, l;
+cin >> a >> h;
+c = h*h+a*a;
+c = sqrt (c);
+l=c*c-(a*a/4);
+l = sqrt (l);
+int V = (a*a*h)*sqrt(3)/2;
+int Sp = 3*a*(a*sqrt(3)/2+l);
+cout << "V= " << V << endl << "Sp="<< Sp << endl;
+return 0;
+}
