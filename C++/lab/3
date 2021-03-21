@@ -110,6 +110,36 @@ return 0;
 }
 
 //3.8
+#include <iostream>
+#include <math.h>
+using namespace std;
+ int main()
+{	
+setlocale(LC_ALL, "rus");
+float x,y;
+cout << "Введите координаты" << endl;
+cin >> x >> y;
+if (x > 0 && y > 0)
+ cout << "Чт.1 " << endl;
+else if ( x < 0 && y > 0)
+ cout << "Чт.2 " << endl;
+else if ( x < 0 && y < 0)
+ cout << "Чт.3 " << endl;
+else if ( x > 0 && y < 0)
+ cout << "Чт.4 " << endl;
+else if (x == 0 && y > 0)
+ cout << "Между 1 и 2 " << endl;
+else if (x == 0 && y < 0)
+ cout << "Между 3 и 4 " << endl;
+else if (x > 0 && y ==0)
+ cout << "Между 1 и 4 " << endl;
+else if (x < 0 && y == 0)
+ cout << "Между 2 и 3 " << endl;
+else
+ cout << "нет" << endl;
+	return 0;
+ }
+ 
 //3.9
 #include <iostream>
 #include <math.h>
