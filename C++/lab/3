@@ -21,7 +21,7 @@ int main() {
 setlocale(LC_ALL, "rus");
 int a, b, c, s;
 cout << "Введите три числа "<< endl;
-cin » a >> b >> c;
+cin >> a >> b >> c;
 if ((a>c && a<b) || (a<c && a>b)) s = a;
 if ((b>c && b<a) || (b<c && b>a)) s = b;
 else s=c;
@@ -74,7 +74,7 @@ cout << "Целая часть:" << a/b << endl;
 return 0;
 }
 
-//2.6
+//3.6
 #include <iostream>
 #include <math.h>
 using namespace std;
@@ -90,5 +90,167 @@ cout << "явл невисокосным годом"  << endl;
 return 0;
 }
 
-//2.7
+//3.7
+#include <iostream>
+#include <math.h>
+using namespace std;
 
+int main()
+{
+setlocale(LC_ALL, "rus");	
+int a, b, c, d;
+cin >> a >> b >> c;
+d = sqrt(b*b-4*a*c);
+if ( (((-b+d)/(a*2))==0) && (((-b-d)/(a*2))==0) )
+ cout << "x1 = " <<(-b+d)/(a*2)  << endl << "x2 = " << (-b-d)/(a*2);
+else 
+cout << "Нет корней";
+
+return 0;
+}
+
+//3.8
+//3.9
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+setlocale(LC_ALL, "rus");
+int x,y,r;
+cout << "ВВедите координаты точки х, у и радиус r" << endl;
+cin >> x >> y >> r;
+float h = sqrt(x * x + y * y);
+ cout << "Гипотинуза = " << h << endl;
+if (h < r)
+ cout << "принадлежит" << endl;
+else
+ cout << "нет" << endl;
+return 0;
+}
+
+//3.10
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+ {
+float x,y;
+cin >> x;
+if (x > 0)
+{
+ y = 2 * x - 10;
+ cout << y << endl;
+}
+else if (x = 0)
+{
+y = 2;
+cout << y << endl;
+}
+else 
+{
+y = 2 * fabs(x) - 1;
+cout << y << endl;
+}
+return 0;
+ }
+ 
+//3.11
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+setlocale(LC_ALL, "rus");
+int a, b, c, s;
+cout << "Введите три числа "<< endl;
+cin >> a >> b >> c;
+if (a>c && a>b) s = a;
+if (b>c && b>a) s = b;
+else s=c;
+cout << "Наиб. число = " <<  s << endl;
+return 0;
+}
+
+//3.12
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+setlocale(LC_ALL, "rus");
+int a, b, c;
+cout << "Введите три числа "<< endl;
+cin >> a >> b >> c;
+if ((a+c)>b && (a+b)>c && (c+b)>a) 
+ cout << "Треуголник сущ. " << endl;
+else {
+cout << "Не существует " << endl;
+ return 0;
+}
+if (a==b && b==c)
+ cout << "Равносторонний" << endl;
+if ((a==b) || (b==c) || (c==a))
+ cout << "Равнобедренный" << endl;
+else 
+ cout << "Разносторонний" << endl;
+return 0;
+}
+
+//3.13
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+setlocale(LC_ALL, "rus");
+int a, r;
+cout << "Введите три числа "<< endl;
+cin >> a >> r;
+float d= sqrt(a*a+a*a);
+if (r*2==d)
+ cout << "Квадрат впис. в окр. " << endl;
+if (2*r==a)
+ cout << "Окружность впис. в кв. " << endl;
+else 
+ cout << "Не существует " << endl;
+return 0;
+}
+
+//3.14
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+setlocale(LC_ALL, "rus");
+int a;
+cout << "Введите возраст "<< endl;
+cin >> a;
+if (a<7)
+ cout << "дошкольник " << endl;
+if (a>6 && a<24)
+ cout << "Ученик " << endl;
+if (a>23 && a<66)
+ cout << "Работник " << endl;
+if (a>65)
+ cout << "Пенсионер " << endl;
+return 0;
+}
+
+//3.15
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+setlocale(LC_ALL, "rus");
+int a, b;
+cout << "Введите стаж и возраст"<< endl;
+cin >> a, b;
+if (a>=20 && 16<= b<42)
+ cout << "принят " << endl;
+else
+ cout << " нет " << endl;
+return 0;
+}
