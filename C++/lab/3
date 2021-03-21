@@ -1,0 +1,60 @@
+//3.1
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+setlocale(LC_ALL, "rus");
+int a, b, c;
+cout << "Введите два числа";
+cin >> a >> b;
+if (a%2 == 0) c=b;
+else c=a;
+cout << c << endl;
+return 0;
+}
+
+//3.2
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+setlocale(LC_ALL, "rus");
+int a, b, c, s;
+cout << "Введите три числа "<< endl;
+cin » a >> b >> c;
+if ((a>c && a<b) || (a<c && a>b)) s = a;
+if ((b>c && b<a) || (b<c && b>a)) s = b;
+else s=c;
+cout << "Ср.ар.= " <<  s << endl;
+return 0;
+}
+
+//3.3
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+setlocale(LC_ALL, "rus");
+float a, b;
+cout << "Введите битовое число и вариант преобразования (1-байт/2 - кб) "<< endl;
+cin >> a >> b;
+if (b==1) a = a/8;
+if (b==2) a = a/8000;
+cout << "Итог " << a << endl;
+return 0;
+}
+
+//2.4
+#include <iostream>
+using namespace std;
+
+int main() {
+char n;
+cin >> n;
+if (n>='A' && n<='Z' || n>='a' && n<='z')
+cout << "Это буква" << n;
+else cout << "Это не буква, а символ \n" << n;
+return 0;
+}
+
+//2.5
