@@ -44,7 +44,7 @@ cout << "Итог " << a << endl;
 return 0;
 }
 
-//2.4
+//3.4
 #include <iostream>
 using namespace std;
 
@@ -57,4 +57,38 @@ else cout << "Это не буква, а символ \n" << n;
 return 0;
 }
 
-//2.5
+//3.5
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+setlocale(LC_ALL, "rus");
+int a, b;
+cout << "Введите два числа"<< endl;
+cin >> a >> b;
+if (a%b == 0) 
+cout << " делится  " << endl;
+else 
+cout << "не делится, остаток:" << a%b << endl;
+cout << "Целая часть:" << a/b << endl;
+return 0;
+}
+
+//2.6
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main() {
+setlocale(LC_ALL, "rus");
+int a;
+cout << "Введите год"<< endl;
+cin >> a;
+if (a%4 == 0) 
+cout << " явл високосным годом  " << endl;
+else 
+cout << "явл невисокосным годом"  << endl;
+return 0;
+}
+
+//2.7
+
