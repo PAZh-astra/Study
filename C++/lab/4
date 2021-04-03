@@ -34,5 +34,34 @@ cout << "Посетитель (введите возраст) " << amountDigits 
  cout << "Самый младший: " << a<< endl;
 return 0;
 }
+
 //2
+#include <iostream>
+using namespace std;
+int main()
+{
+ setlocale(LC_ALL, "rus");
+
+int x = 15; // число ящиков
+float S = 0; // сумма ушедших ящиков
+float y;
+int amountDigits = 0; //счетчик посетителей
+ do
+ {
+cout << "Ввести колличество ящиков в грузовик " << amountDigits + 1 << " = ";
+ cin >> y;
+ if (y) // если y любое значение кроме 0(false)
+ {
+ amountDigits++;
+ S += y;
+ }
+ if (S>=15) 
+ break;
+ } while (y);
+ cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+ cout << "Количество машин: " << amountDigits << endl;
+return 0;
+}
+
+//3
 
