@@ -64,4 +64,34 @@ return 0;
 }
 
 //3
+#include <iostream>
+using namespace std;
+int main()
+{
+ setlocale(LC_ALL, "rus");
+int x, y, a; 
+int b = 0;
+float S = 0; 
+cout << "Ввести диапазон ";
+cin >> x >> y;
+do {
+if (x%2!=0) {
+    S+=x;
+    x+=2;
+} 
+if (x%2==0)
+{
+    x+=1;
+    S+=x;
+    x+=2;
+}
+if (x>y) 
+break;
+} while (x<=y);
+ cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+ cout << "Сумма нечетных: " << S << endl;
+return 0;
+}
+
+//4
 
