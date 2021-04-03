@@ -94,4 +94,31 @@ return 0;
 }
 
 //4
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int h = 0; // высота треугольника
+    cout << "Введите высоту  равнобедренного треугольника: ";
+    cin >> h;
+ 
+    for (int i=0; i < h; i++)
+    {
+        for (int j = 1; j < h-i; j++)
+        {
+            cout << ' ';
+        }   
+ 
+        for (int j=h-2*i; j <= h; j++)
+        {
+            cout << '^';
+        }           
+        cout << endl;
+    }
+    return 0;
+}
+
+//5
 
