@@ -1,1 +1,38 @@
+//1
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ setlocale(LC_ALL, "rus");
+
+ int a = 199; // наименьший возраст счетчик
+float totalSum = 0; // сумма возрастов
+ int c = 0; // наибольший возраст счетчик
+float x;
+int amountDigits = 0; //счетчик посетителей
+ do
+ {
+cout << "Посетитель (введите возраст) " << amountDigits + 1 << " = ";
+ cin >> x;
+
+ if (x) // если digit любое значение кроме 0(false)
+ {
+ amountDigits++;
+ totalSum += x;
+ if (x>c)
+ c=x;
+  if (x<a)
+ a=x;
+ }
+ } while (x);
+ cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+ cout << "Количество посетителей: " << amountDigits << endl;
+ cout << "Средний возраст: " << totalSum/amountDigits << endl;
+ cout << "Среднее арифметическое: " << totalSum / amountDigits <<endl;
+ cout << "Самый старший: " << c << endl;
+ cout << "Самый младший: " << a<< endl;
+return 0;
+}
+//2
 
