@@ -183,4 +183,57 @@ return 0;
 }
 
 //8
+#include <iostream>
+using namespace std;
+int main() {
+    setlocale(LC_ALL, "rus");
+    int t,a,x;
+    t=1;
+    x=0+rand()%(100+0+1);
+    cout << "Число загадано"<< endl;
+do {
+    cout << "Попытка "<< t<< endl<< "Введите число" << endl;
+    cin >> a;
+    
+    if (a>x && t<10)
+    cout << "Велико число, попробуйте поменьше"<< endl;
+    if (a<x && t<10)
+     cout << "Мало, нужно больше"<< endl;
+    if (a==x) {
+    cout << "Вы выйграли!!!"<< endl;
+    break;
+    }
+     t++;
+    if (t>10)
+    cout << "Вы проиграли. Правильный ответ был:"<< x<< endl;
+} while (t<11);
+return 0;
+}
+
+//9
+//10
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+int x, y, a, z;
+cout << "Введите число "<< endl;
+cin >> x;
+a=0;
+z=0;
+do {
+    y=x%10;
+    if (y%2==0)
+    a++;
+    else {
+        z++;
+    }
+    x=x/10;
+} while (x>0);
+cout << "Итог: нечетных чисел: "<< z <<", а четных: " << a;
+return 0;
+}
+
+//11
 
