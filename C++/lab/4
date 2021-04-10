@@ -121,4 +121,66 @@ int main()
 }
 
 //5
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+int x, y, a;
+cout << "Введите число "<< endl;
+cin >> x;
+a=0;
+do {
+    y=x%10;
+    if (y > a)
+    a=y;
+    x=x/10;
+} while (x>0);
+cout << "ответ = "<< a;
+return 0;
+}
+
+//6
+#include <iostream>
+using namespace std;
+int main() {
+    setlocale(LC_ALL, "rus");
+    double i,q;
+    int n;
+    cout << "Введите колличество чисел для генератора" << endl;
+    cin >> n;
+    int randomDigits[n] = {};
+    q = 0;
+    srand(time(NULL));
+    for (int i=0;i<n;i++) {
+        randomDigits[i] = rand();
+         if (rand()% 2 == 0) {
+            q += 1;
+         }
+        cout << rand() << endl;
+    }
+double x=q/n;
+    cout << (x * 100);
+return 0;
+}
+//7
+#include <iostream>
+using namespace std;
+int main() {
+    setlocale(LC_ALL, "rus");
+    int i,y,x,n;
+    cout << "Введите колличество чисел для генератора" << endl;
+    cin >> n;
+    cout<< "x - правая сторона равенства, а y - левая"<< endl;
+    x = 0;
+    for (int i=0;i<n;i++) {
+        x+=i+1;
+    }
+    cout << "x" <<x << endl;
+    y=n*(n+1)/2;
+    cout << "проверено и доказано, т.к. x= "<< x<<",а y= "<< y;
+return 0;
+}
+
+//8
 
