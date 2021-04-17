@@ -236,4 +236,86 @@ return 0;
 }
 
 //11
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+int x,a,b,n;
+cout << "Введите число "<< endl;
+cin >> n;
+a=1;
+b=1;
+     for (int i=0;i<n;i++) {
+         x=a;
+         a=b;
+         b=a+x;
+         cout<< "число a= "<< a<<endl<< "число b= "<<b<< endl;
+     }
+cout << "Итог: "<< b;
+return 0;
+}
+
+//12
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+int x,a,b,n;
+cout << "Введите число минимум "<< endl;
+cin >> a;
+cout << "Введите число максимум"<< endl;
+cin >> b;
+cout << "Введите число шагов "<< endl;
+cin >> n;
+x=(b-a)/n;
+     for (int i=0;i<n;i++) {
+         a+=x;
+         cout<< a <<" ";
+     }
+if (a!=b){
+    cout<<"Данные критерии не могут быть выполнены за выделенные шаги, недостаток: "<< b-a<<endl;}
+return 0;
+}
+
+//13
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+int x,a;
+cout << "Введите число"<< endl;
+cin >> a;
+x=0;
+do {
+         x=x*10+a%10;
+         a=a/10;
+     }while (a>0);
+    cout<<"Итог:"<<x;
+return 0;
+}
+
+//14
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+int x,a,s;
+cout << "Введите число"<< endl;
+cin >> a;
+s=0;
+x=1;
+do {
+         s+=a%10;
+         x=x*(a%10);
+         a=a/10;
+     }while (a>0);
+    cout<<"Сумма равна "<<s<< ", а произведение равно "<<x;
+return 0;
+}
+
+//15
 
