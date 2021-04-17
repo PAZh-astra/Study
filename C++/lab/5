@@ -76,5 +76,32 @@ int main(){
 }
 
 //4
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+int main(){
+    setlocale(LC_ALL, "rus");
+    int x,y,c=0;
+    int M[10] = {};
+    const int A = 0;
+    const int B = 101;
+    srand(time(NULL));
+    for(int i = 0; i < 10; i++) {
+        M[i] = A + rand() % (B - A + 1);
+        cout << M[i] << " | " ;
+        if (M[i]<x) {
+            x=M[i];
+            c=i;
+        }
+    }
+    for(int i = 0; i < 10; i++){
+        if ((M[i]<y) && (i!=c)) y=M[i];
+    }
+    cout<<endl<<"Наименьшими числами массива являются "<<x<<" и "<<y;
+    return 0;
+}
+
+//5
 
 
