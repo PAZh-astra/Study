@@ -24,7 +24,30 @@ int main(){
     }
     cout<<"Сумма четных положительных элементов матрицы равна "<< x;
     return 0;
-    */
+*/
     
-    //2
-    
+//2
+/* 
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+int main(){
+    setlocale(LC_ALL, "rus");
+    int a=0;
+    int M[5] = {};
+    const int A = 0;
+    const int B = 101;
+    srand(time(NULL));
+    for(int i = 0; i < 10; i++) {
+       M[i] = A + rand() % (B - A + 1);
+        cout <<"|"<< M[i] << " | " ;
+        if (M[i]&2==0){
+            if (M[i]>a){
+                a=M[i];
+            }
+        }
+        cout<< "**"<< M[i]<<"__"<<a<<"**"<<endl;
+        }
+    return 0;
+}
+*/
