@@ -318,4 +318,35 @@ return 0;
 }
 
 //15
-
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+int x,y;
+char a;
+do{
+cout << "Введите знак действия "<< endl;
+cin >> a;
+if (a =='0') break;
+if (a=='+'||a=='-'||a=='*'||a=='/') {
+ cout << "Введите два числа "<< endl;
+cin >> x>>y;
+switch (a) {
+    case '+':
+        cout<< x+y<<endl;
+        break;
+    case '-':
+        cout<< x-y<<endl;
+        break;
+    case '*':
+        cout<< x*y<<endl;
+        break;
+    case '/':
+        if (y!=0) cout<< x/y;
+        else cout<<"Деление на ноль!"<<endl;
+            }
+}
+} while (a!='0');
+return 0;
+}
