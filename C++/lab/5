@@ -14,17 +14,18 @@ int main(){
         M[i] = A + rand() % (B - A + 1);
         cout << M[i] << " | " ;
     }
-    cout<<endl;
-    for(int i = 0; i < 10; i++){
-        if ((M[i]>=0) && (M[i]%2==0)){
-        cout<< M[i]<<"__"<<x<<endl;
-        x+=M[i];
+        for(int i = 0; i < 10; i++){
+        if (M[i]>=0 && M[i]%2==0){
+            x+=M[i];
         }
     }
-    cout<<"Сумма четных положительных элементов матрицы равна "<< x;
+    cout<<endl<<"Сумма четных положительных элементов матрицы равна "<< x;
     return 0;
+}
+
     
 //2
+#include <iostream>
 #include <ctime>
 #include <cstdlib>
 using namespace std;
@@ -43,8 +44,11 @@ int main(){
                 a=M[i];
             }
         }
-        cout<< "**"<< M[i]<<"__"<<a<<"**"<<endl;
         }
+    cout<<endl<<"Максимальное четное число равно "<<a<<endl;
     return 0;
 }
+
+//3
+
 
