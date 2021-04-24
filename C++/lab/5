@@ -103,5 +103,157 @@ int main(){
 }
 
 //5
+...
+//6
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+int main(){
+    setlocale(LC_ALL, "rus");
+    int x=0,c=0;
+    int M[10];
+    const int A = -10;
+    const int B = 101;
+    srand(time(NULL));
+    cout<<endl<<"x= "<<x<<endl;
+    for(int i = 0; i < 10; i++) {
+        M[i] = A + rand() % (B - A + 1);
+        cout << M[i] << " | " ;
+    }
+    for(int i = 0; i < 10; i++) {
+        cout<<endl<<"c= "<<c;
+        c+=1;
+        cout<<endl<<"M[]= "<<M[i];
+        if (M[i]<0) {
+            for(int i=c; i < 10; i++){
+            cout<<endl<<"x= "<<x;
+            x+=abs(M[i]);
+            }
+        break;
+        }
+    }
+    cout<<endl<<"Ответ "<<x;
+    return 0;
+}
 
+//7
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+int main(){
+    setlocale(LC_ALL, "rus");
+    int c=0;
+    int M[10];
+    const int A = -10;
+    const int B = 101;
+    srand(time(NULL));
+    for(int i = 0; i < 10; i++) {
+        M[i] = A + rand() % (B - A + 1);
+        cout << M[i] << " | " ;
+    }
+    int x=M[0];
+    for(int i = 0; i < 10; i++) {
+        if (x>abs(M[i])) {
+            x=abs(M[i]);
+        }
+    }
+    for(int i = 0; i < 10; i++) {
+        c+=1;
+        if (abs(x)==abs(M[i])) break;
+    }
+    cout<<endl<<"Ответ "<<c;
+    return 0;
+}
 
+//8
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+int main(){
+    setlocale(LC_ALL, "rus");
+    int a,c=0;
+    int M[4];
+    const int A = 10;
+    const int B = 101;
+    srand(time(NULL));
+    for(int i = 0; i < 4; i++) {
+        M[i] = A + rand() % (B - A + 1);
+        cout << M[i] << " | " ;
+        a=M[i];
+        do{ 
+            c+=a%10;
+            a=a/10;
+        } while (a!=0);
+    }
+    cout<<endl<<"Ответ "<<c;
+    return 0;
+}
+
+//9***
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std; 
+int main()
+{
+    srand(time(NULL));
+    const int n = 4, m = 3;
+    int b[n][m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            b[i][j] = -10 + rand() % 21;
+            cout << b[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+    cout << "\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            b[i][j] *= b[i][j];
+            cout << b[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+}
+
+//10***
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <iomanip>
+using namespace std;
+int main() {
+ setlocale(LC_ALL, "rus");
+ const int n = 5;
+ int M[n][n] = {};
+ int Sum[n] = {}; // для записи сумм в строках
+ int Max = 0; // номер строки с максимальной суммой
+ srand(time(NULL));
+ for (int i= 0; i < n; i++) { 
+    cout << " | ";
+    for (int j = 0; j < n; j++) { 
+         M[i][j] = 10 + rand() % 91;
+         cout << setw(4) << M[i][j] << "  ";
+    }
+    cout << "|" << endl;
+ }
+ // подсчет суммы отдельно в каждой строке
+ for (int i = 0; i < n; i++) {  
+    for (int j = 0; j < n; j++) { 
+        Sum[i] += M[i][j];
+    } 
+ }
+ cout << "\nСумма по строкам!\n";
+ for (int i = 0; i < n; i++) {
+    cout << i + 1 << "-я строка: " << Sum[i] << endl;
+ }
+ for (int i = 1; i < n; i++) {
+    if (Sum[i] > Sum[Max]) Max = i;
+ }
+ cout << "Строка, сумма элементов которой максимальна: " << Max + 1;
+ cout << endl << endl;
+ return 0;
+}
