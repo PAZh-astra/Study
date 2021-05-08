@@ -82,4 +82,276 @@ return 0;
 }
 
 //5
+//6
+//7
+//8
+#include <iostream>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+using namespace std;
+ 
+void func(int M[][10], int x)
+{
+    int i,j;
+    for(i=0;i<x;i++)          
+    {
+        cout<<"\n";
+        for(j=0;j<x;j++)
+        {
+           cout<<M[i][j]<<" ";
+        }
+    }
+    cout<<"\n";
+}
+ 
+int main()
+{
+    int i,j;
+    int A[10][10];
+ 
+    for(i=0;i<10;i++)           
+    {
+        for(j=0;j<10;j++)
+        {
+            A[i][j]=rand()%100;
+        }
+    }
+ 
+    cout<<"\nВывод исходной матрицы: ";
+    func(A, 10);       
+return 0;
+}
 
+//9
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+ 
+using namespace std;
+ 
+const int  SIZE = 5;
+ 
+void fillAndShowArray(int[][SIZE], const int size);
+int findMinElement(int[][SIZE], const int size);
+int findMaxElement(int[][SIZE], const int size);
+ 
+int main()
+{
+ setlocale(LC_ALL, "rus");
+ 
+ int matrix[SIZE][SIZE] = {};
+ 
+ fillAndShowArray(matrix, SIZE); //заполняем и показываем массив
+ 
+ cout << endl;
+ cout << "Минимум: " << findMinElement(matrix, SIZE) << endl;
+ cout << "Максимум: " << findMaxElement(matrix, SIZE) << endl;
+ 
+ return 0;
+}
+ 
+void fillAndShowArray(int arr[][SIZE], const int size)
+{
+ for (int i = 0; i < size; i++)
+ {
+ cout << "| ";
+ for (int j = 0; j < size; j++)
+ {
+ arr[i][j] = 30 + rand() % 31;
+ 
+ cout << arr[i][j] << " ";
+ }
+ cout << " |" << endl;
+ }
+}
+ 
+int findMinElement(int arr[][SIZE], const int size)
+{
+ int min = arr[0][0];
+ for (int i = 0; i < size; i++)
+ {
+ for (int j = 0; j < size; j++)
+ {
+ if (arr[i][j] < min)
+ min = arr[i][j];
+ }
+ }
+ return min;
+}
+ 
+int findMaxElement(int arr[][SIZE], const int  size)
+{
+ int max = arr[0][0];
+ for (int i = 0; i < size; i++)
+ {
+ for (int j = 0; j < size; j++)
+ {
+ if (arr[i][j] > max)
+ max = arr[i][j];
+ }
+ }
+ return max;
+}
+
+//10
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+ 
+using namespace std;
+ 
+bool calcFirstMove(); 
+void drowCube(int res); 
+int computerOrPlayerThrow(); 
+void showIntermediateResult(int pointsOfComputer, int pointsOfUser, int numberThrow); 
+ 
+int main()
+{
+ setlocale(LC_ALL, "rus");
+ srand(time(NULL));
+ 
+ int playerScore = 0; 
+ int computerScore = 0;
+ int whoMove = 0; 
+ char userName[16] = {};
+ 
+ cout << "Ваше имя (латиницей): ";
+ cin >> userName;
+ 
+ whoMove = calcFirstMove(); // если будет 0 - ходит игрок, 1 - ходит компьютер
+ 
+ for (int i = 0; i < 4; ++i)
+ {
+ for (int j = 0; j < 2; j++)
+ {
+ if (whoMove)
+ {
+ cout << "\nХодишь ты. ";
+ playerScore += computerOrPlayerThrow();
+ }
+ else
+ {
+ cout << "\nХодит компьютер. ";
+ computerScore += computerOrPlayerThrow();
+ }
+ whoMove = !whoMove; // инверсия
+ }
+ 
+ showIntermediateResult(computerScore, playerScore, i); 
+ } 
+ 
+ if (computerScore > playerScore)
+ {
+ cout << "\n\nПобедитель этой игры - КОМПЬЮТЕР\n!";
+ cout << "Желаем успехов в следующий раз.\a\a\a\a\a\n\n";
+ }
+ else if (computerScore < playerScore)
+ {
+ cout << "\n\nПобедитель этой игры - " << userName << "!!! ";
+ cout << "Поздравляем!!!\a\a\a\a\a\n\n";
+ }
+ else
+ {
+ cout << "\n\nВ этой игре НИЧЬЯ\a\a\a\a\a\n\n";
+ }
+ 
+ return 0;
+}
+ 
+bool calcFirstMove() // генерирует и возвращает случайное число 0 или 1
+{
+ return rand() % 2;
+}
+ 
+void showIntermediateResult(int computerScore, int playerScore, int numberThrow) {
+ cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+ cout << "Комп: " << computerScore << "  |||  Ты:" << playerScore << endl;
+ cout << "После " << numberThrow + 1 << "-го броска ";
+ if (computerScore > playerScore)
+ cout << " выигрывает компьютер!!!\n";
+ else if (computerScore < playerScore)
+ cout << " выигрываете Вы!!!\n";
+ else cout << " ничья!!!\n";
+ cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+}
+ 
+// вызывается в функции computerOrPlayerThrow()
+void drowCube(int res) 
+{
+ switch (res)
+ {
+ case 1:
+ cout << "\n";
+ cout << "@@@@@@@\n";
+ cout << "@@@ @@@\n";
+ cout << "@@@@@@@\n";
+ cout << "@@@@@@@\n";
+ cout << "1\n";
+ break;
+ case 2:
+ cout << "@@@@@@@\n";
+ cout << "@ @@@@@\n";
+ cout << "@@@@@@@\n";
+ cout << "@@@@@ @\n";
+ cout << "@@@@@@@\n";
+ cout << "2\n";
+ break;
+ case 3:
+ cout << "@@@@@@@\n";
+ cout << "@ @@@@@\n";
+ cout << "@@@ @@@\n";
+ cout << "@@@@@ @\n";
+ cout << "@@@@@@@\n";
+ cout << "3\n";
+ break;
+ case 4:
+ cout << "@@@@@@@\n";
+ cout << "@ @@@ @\n";
+ cout << "@@@@@@@\n";
+ cout << "@ @@@ @\n";
+ cout << "@@@@@@@\n";
+ cout << "4\n";
+ break;
+ case 5:
+ cout << "@@@@@@@\n";
+ cout << "@ @@@ @\n";
+ cout << "@@@ @@@\n";
+ cout << "@ @@@ @\n";
+ cout << "@@@@@@@\n";
+ cout << "5\n";
+ break;
+ case 6:
+ cout << "@@@@@@@\n";
+ cout << "@ @ @ @\n";
+ cout << "@@@@@@@\n";
+ cout << "@ @ @ @\n";
+ cout << "@@@@@@@\n\n";
+ cout << "6\n";
+ break;
+ }
+}
+ 
+int computerOrPlayerThrow() 
+{
+ int result = 0;
+ char c = 0;
+ 
+ cout << "Нажми a (eng), чтобы бросить кубики: "; 
+ do
+ {
+ cin.sync(); // очистка буфера
+ cin >> c;
+ } while (c != 'a');
+ 
+ int tmp = 0; // для накопления очков пары брошенных кубиков
+ for (int i = 0; i < 2; ++i) {
+ tmp = 1 + rand() % 6;
+ drowCube(tmp);
+ result += tmp;
+ cout << endl;
+ }
+ 
+ cout << "Всего на кубиках " << result << " очков";
+ return result;
+}
