@@ -1,1 +1,85 @@
 //1
+#include <iostream>
+using namespace std;
+int count=0;
+int func(int n){
+    count++;
+    n=count;
+    return n;
+}
+int main() {
+    int x1=func(0);
+    cout<<"x1= "<< x1<<endl;
+    int x2 = func(50);
+    cout<<"x2= "<< x2<<endl;
+return 0;
+}
+
+//2
+#include <iostream>
+using namespace std;
+int count=0;
+void func(){
+    int x=count%3;
+    switch(x){
+        case 0:
+           cout << "Good morning"<<endl;
+           break;
+        case 1:
+           cout << "Good afternoon"<<endl;
+           break;
+        case 2:
+           cout << "Good evening"<<endl;
+           break;
+    }
+    count++;
+}
+int main() {
+    func();
+    func();
+    func();
+    func();
+    func();
+return 0;
+}
+
+//3
+//4
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+int x=2;
+bool Prime(int n){
+    for (int i=2; i*i<=n; i++){
+        if (n%i==0){
+            return false;
+        }
+    }
+    return true;
+}
+int func(){    
+    while(!Prime(x)){
+        x++;
+    }
+    x++;
+    return x-1;
+}
+int main() {
+    int l=func();
+    cout<<"l= "<< l<<endl;
+    l=func();
+    cout<<"l= "<< l<<endl;
+    l=func();
+    cout<<"l= "<< l<<endl;
+    l=func();
+    cout<<"l= "<< l<<endl;
+    l=func();
+    cout<<"l= "<< l<<endl;
+    l=func();
+    cout<<"l= "<< l<<endl;
+return 0;
+}
+
+//5
+
