@@ -2,16 +2,23 @@
 #include <iostream>
 using namespace std;
 int count=0;
-int func(int n){
+int func(){
+    int n;
     count++;
     n=count;
     return n;
 }
 int main() {
-    int x1=func(0);
+    int x1=func();
     cout<<"x1= "<< x1<<endl;
-    int x2 = func(50);
+    int x2 = func();
     cout<<"x2= "<< x2<<endl;
+    int x3 = func();
+    cout<<"x3= "<< x3<<endl;
+    int x4 = func();
+    cout<<"x4= "<< x4<<endl;
+    int x5 = func();
+    cout<<"x5= "<< x5<<endl;
 return 0;
 }
 
