@@ -134,71 +134,51 @@ return 0;
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
- 
 using namespace std;
- 
-const int  SIZE = 5;
- 
-void fillAndShowArray(int[][SIZE], const int size);
-int findMinElement(int[][SIZE], const int size);
-int findMaxElement(int[][SIZE], const int size);
- 
-int main()
-{
- setlocale(LC_ALL, "rus");
- 
- int matrix[SIZE][SIZE] = {};
- 
- fillAndShowArray(matrix, SIZE); //заполняем и показываем массив
- 
- cout << endl;
- cout << "Минимум: " << findMinElement(matrix, SIZE) << endl;
- cout << "Максимум: " << findMaxElement(matrix, SIZE) << endl;
- 
- return 0;
+const int  a = 5;
+void func(int[][a], const int size);
+int fMin(int[][a], const int size);
+int fMax(int[][a], const int size);
+int main() {
+    setlocale(LC_ALL, "rus");
+    int M[a][a] = {};
+    func(M, a); //заполняем и показываем массив
+    cout << endl;
+    cout << "Минимум: " << fMin(M, a) << endl;
+    cout << "Максимум: " << fMax(M, a) << endl;
+    return 0;
+}
+
+void func(int arr[][a], const int size) {
+    srand(time(NULL));
+    for (int i = 0; i < size; i++) {
+        cout << "| ";
+        for (int j = 0; j < size; j++) {
+            arr[i][j] = 30 + rand() % 31;
+            cout << arr[i][j] << " ";
+        }
+        cout << " |" << endl;
+    }
 }
  
-void fillAndShowArray(int arr[][SIZE], const int size)
-{
- for (int i = 0; i < size; i++)
- {
- cout << "| ";
- for (int j = 0; j < size; j++)
- {
- arr[i][j] = 30 + rand() % 31;
- 
- cout << arr[i][j] << " ";
- }
- cout << " |" << endl;
- }
+int fMin(int arr[][a], const int size) {
+    int min = arr[0][0];
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (arr[i][j] < min) min = arr[i][j];
+        }
+    }
+    return min;
 }
  
-int findMinElement(int arr[][SIZE], const int size)
-{
- int min = arr[0][0];
- for (int i = 0; i < size; i++)
- {
- for (int j = 0; j < size; j++)
- {
- if (arr[i][j] < min)
- min = arr[i][j];
- }
- }
- return min;
-}
- 
-int findMaxElement(int arr[][SIZE], const int  size)
-{
- int max = arr[0][0];
- for (int i = 0; i < size; i++)
- {
- for (int j = 0; j < size; j++)
- {
- if (arr[i][j] > max)
- max = arr[i][j];
- }
- }
- return max;
+int fMax(int arr[][a], const int  size) {
+    int max = arr[0][0];
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (arr[i][j] > max) max = arr[i][j];
+        }
+    }
+    return max;
 }
 
 //10
