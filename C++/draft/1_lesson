@@ -1,1 +1,54 @@
+//1
+#include <iostream>
+using namespace std;
+int getUserInput() {
+    cout << "Please enter an integer: ";
+    int value;
+    cin >> value;
+    return value;
+}
 
+int getMathematicalOperation() {
+    cout << "Please enter which operator you want ( +, -, *, /): ";
+    char op;
+    cin >> op;
+    return op;
+}
+
+int calculateResult(int x, int op, int y) {
+    switch (op) {
+        case '+':
+            return x + y;
+            break;
+        case '-':
+            return x - y;
+            break;
+        case '*':
+            return x * y;
+            break;
+        case '/':
+            if (y!=0){
+                cout<< x/y;
+                return x / y;
+            }
+            else {
+                cout<<"Деление на ноль!"<<endl;
+                return 0;
+            }
+    }
+}
+
+void printResult(int result) {
+    std::cout << "Your result is: " << result << std::endl;
+}
+
+int main(){
+    int input1 = getUserInput();
+    char op = getMathematicalOperation();
+    if (op=='+'||op=='-'||op=='*'||op=='/') {
+            int input2 = getUserInput();
+            char result = calculateResult(input1, op, input2 );
+            printResult(result);
+    }
+    else cout << "Incorrect operator...";
+}
