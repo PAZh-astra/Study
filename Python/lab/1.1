@@ -1,16 +1,19 @@
 //1
 import matplotlib.pyplot as plt
+#_по х и y
 plt.plot([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])
 plt.show()
 
 //2
 import matplotlib.pyplot as plt
 import numpy as np
+#_устанвливается х и y по х
 x = np.linspace(0, 10, 50)
 y = x
 plt.title("Линейная зависимость y = x") 
 plt.xlabel("x") 
 plt.ylabel("y") 
+#_сетка
 plt.grid() 
 plt.plot(x, y) 
 plt.show()
@@ -24,6 +27,7 @@ plt.title("Линейная зависимость y = x")
 plt.xlabel("x") 
 plt.ylabel("y") 
 plt.grid() 
+#_в качесвте третьего параметра, где r - крассный, а "--" - формат
 plt.plot(x, y, "r--") 
 plt.show()
 
@@ -32,6 +36,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 x = np.linspace(0, 10, 50)
 y1 = x
+#_порабола
 y2 = [i**2 for i in x]
 plt.title("Зависимости: y1 = x, y2 = x^2") 
 plt.xlabel("x") 
@@ -51,6 +56,7 @@ plt.subplot(2, 1, 1)
 plt.plot(x, y1) 
 plt.title("Зависимости: y1 = x, y2 = x^2")
 plt.ylabel("y1", fontsize=14) 
+#_формирование сетки (True/False)
 plt.grid(True)
 plt.subplot(2, 1, 2)
 plt.plot(x, y2) 
@@ -63,6 +69,7 @@ plt.show()
 import matplotlib.pyplot as plt
 fruits = ["apple", "peach", "orange", "bannana", "melon"]
 counts = [34, 25, 43, 31, 17]
+#_для вывода диаграммы
 plt.bar(fruits, counts)
 plt.title("Fruits!")
 plt.xlabel("Fruit")
@@ -71,8 +78,7 @@ plt.show()
 
 //7
 import matplotlib.pyplot as plt
-from matplotlib.ticker import (MultipleLocator, FormatStrFormatter,
-AutoMinorLocator)
+from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLocator)
 import numpy as np
 x = np.linspace(0, 10, 10)
 y1 = 4*x
@@ -81,9 +87,13 @@ fig, ax = plt.subplots(figsize=(8, 6))
 ax.set_title("Графики зависимостей: y1=4*x, y2=x^2", fontsize=16)
 ax.set_xlabel("x", fontsize=14)
 ax.set_ylabel("y1, y2", fontsize=14)
+#_основная сетка
 ax.grid(which="major", linewidth=1.2)
+#_доп сетка
 ax.grid(which="minor", linestyle="--", color="gray", linewidth=0.5)
+#_точечный график
 ax.scatter(x, y1, c="red", label="y1 = 4*x")
+#_линейный 
 ax.plot(x, y2, label="y2 = x^2")
 ax.legend()
 ax.xaxis.set_minor_locator(AutoMinorLocator())
