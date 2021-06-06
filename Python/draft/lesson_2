@@ -1,4 +1,4 @@
-//1
+//1__________________________________________________________________________________________________________________
 from sklearn.datasets import load_iris
 iris = load_iris ()
 
@@ -41,3 +41,37 @@ plt.scatter(petal_length, petal_width, c=iris.target)
 plt.xlabel (petal_length_label)
 plt.ylabel (petal_width_label)
 plt.show()
+
+//2__________________________________________________________________________________________________________________
+from sklearn.datasets import load_iris
+#_функция, которой предост-ся часть средств масштаб-ия, что позволит заупстить классификатор ближайших соседей
+from sklearn.neighbors import KNeighborsClassifier
+#_импортируем функцию разделения (рандомную)
+from sklearn.model_selection import train_test_split 
+
+import numpy as np
+iris = load_iris ()
+
+#_split - есть данные (данные X, которые запускаются в данную модель, и цель Y, которую пытаемся предсказать)
+#_X_test и Y_test - данные, которые мы скроем для последующей проверки
+#_random равен нулю для получения тех же компонентов из конкретного набора данных этих переменных
+X_train, X_test, Y_train, Y_test = train_test_split(iris['data'], iris['target'], random_state=0)
+
+#_knn-переменная; уст-м классификатор ближайших сосоеде, который будет диктовать сколько "соседей" рассматривать для данной модели (выбрали 1 соседа)
+knn = KNeighborsClassifier(n_neighbors=1)
+#_подгонка в отношении некоторых данных
+knn.fit(X_train, Y_train)
+
+#_образец данных для проверки
+X_new = np.array([[5.0, 2.9, 1.0, 0.2]])
+
+#_shape - размеры массива, его форма
+#print (X_new.shape)
+
+#_опрееделим переменную (используя подгонку) для спрогнозирования результатат данной выборки
+#prediction = knn.predict(X_new)
+#print(prediction)
+
+#_составить прогноз и соспоставить со скрытым екстом Y, определив правильная ли модель или нет
+print(knn.score(X_test, Y_test))
+#_модель сможет предсказть с точностью в 97%
