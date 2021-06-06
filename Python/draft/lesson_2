@@ -1,0 +1,43 @@
+//1
+from sklearn.datasets import load_iris
+iris = load_iris ()
+
+#_узнать все состовляющие набора данных iris (вызов load_iris из библиотеки)
+#print(iris.keys())
+#print(iris)
+#print (iris["DESCR"])
+import matplotlib.pyplot as plt
+#_значения таблицы
+#print(iris.data)
+#_сортировка таблицы по отдельным критериям
+#print(iris.data.T)
+
+#_features - переменная для хранения "list" (любая)
+featurse = iris.data.T
+
+#_вызов функции по первой характеристики (начиная с нуль)
+#print(featurse[0]) 
+#_присвоим эту функцию к отдельному имени (любая)
+sepal_length = featurse [0]
+sepal_width = featurse [1]
+petal_length = featurse [2]
+petal_width = featurse [3]
+
+#_узнать еденицу измерения
+#print(iris.feature_names)
+sepal_length_label = iris.feature_names [0]
+sepal_width_label = iris.feature_names [1]
+petal_length_label = iris.feature_names [2]
+petal_width_label = iris.feature_names [3]
+
+#_создадим диаграмму рассеивания через plt (функция scatter) 
+plt.scatter(sepal_lengh, sepal_width, c=iris.target)
+plt.xlabel (sepal_length_label)
+plt.ylabel (sepal_width_label)
+#_показать результат
+plt.show()
+
+plt.scatter(petal_length, petal_width, c=iris.target)
+plt.xlabel (petal_length_label)
+plt.ylabel (petal_width_label)
+plt.show()
