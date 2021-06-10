@@ -120,3 +120,29 @@ ax.set_zlabel("3rd eigenvector")
 ax.w_zaxis.set_ticklabels([])
 
 plt.show()
+
+
+
+//4__________________________________________________________________________________________________________________
+from sklearn.datasets import load_iris
+from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
+from sklearn.model_selection import train_test_split
+iris_database = load_iris()
+import matplotlib.pyplot as plt
+colors = ['blue', 'red', 'green']
+for feature in range (iris_database.data.shape[1]):
+  plt.subplot(2,2,feature+1)
+  for label, color in zip(range(len(iris_database.target_names)), colors):
+    plt.hist(iris_database.data[iris_database.target == label, feature],
+             label=iris_database.target_names[label],
+             color=color)
+    plt.xlabel(iris_database.feature_names[feature])
+    plt.legend()
+  plt.show()
+  
+import pandas as pd
+df_iris = pd.DataFrame(iris_database['data'],
+                       columns = iris_database['feature_names'])
+df_iris['target'] = iris_database['target']
+df_iris.head
