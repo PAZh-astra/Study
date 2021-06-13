@@ -1,1 +1,89 @@
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+import statsmodels.api as sm
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+#import boston_valuation as val
+%matplotlib inline
+
+boston_dataset = load_boston()
+dir(boston_dataset)
+
+print (boston_dataset.DESCR)
+print (boston_dataset.feature_names)
+print (boston_dataset.data)
+print (boston_dataset.filename)
+print (boston_dataset.target)
+
+data = pd.DataFrame(data = boston_dataset.data, columns=boston_dataset.feature_names)
+data['PRICE'] = boston_dataset.target
+data.head()
+
+pd.isna(data).any()
+data.info()
+
+#визуализауция график цен и распр-е по кол-ву домов
+plt.figure(figsize=(10,6))
+plt.hist(data['PRICE'], bins=50, ec='green', color= '#21a8f3')
+plt.xlabel('Price in 000s')
+plt.ylabel('Nr. of Houses')
+plt.show()
+
+#визуализация среднего кол-ва комнат
+plt.figure(figsize=(10,6))
+plt.hist(data['RM'], ec='yellow', color = '#3f717c')
+plt.xlabel('Average number of room')
+plt.ylabel('Nr. of Houses')
+plt.show()
+
+#визуализация индекса доступности метро
+frequency = data['RAD'].value_counts()
+plt.figure(figsize=(10,6))
+plt.xlabel('Avccessibility to highways')
+plt.ylabel('Nr. of Houses')
+plt.bar(frequency.index, height = frequency)
+plt.show()
+
+data.describe()
+
+data['PRICE'].corr(data['RM'])
+
+data['PRICE'].corr(data['PTRATIO'])
+
+data.corr()
+
+plt.figure(figsize=(16,10))
+sns.heatmap(data.corr(), mask=None, annot = True, annot_kws= {'size':14})
+sns.set_style('white')
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.show
+
+rm_tgt_corr = round(data['RM'].corr(data['PRICE']), 3)
+
+plt.figure(figsize=(9,6))
+plt.scatter(x=data['RM'], y=data['PRICE'], alpha=0.5, s=80, color='skyblue')
+plt.title(f'RM vs PRICE(Correlation {rm_tgt_corr})', fontsize=14)
+plt.xlabel('RM - Median nr of rooms', fontsize=14)
+plt.ylabel('PRICE - property price in 000s', fontsize=14)
+plt.show()
+
+sns.lmplot(x='RM', y='PRICE', data=data, size=7)
+plt.show()
+
+prices = data['PRICE']
+features = data.drop('PRICE', axis=1)
+X_train, X_test, Y_train, Y_test = train_test_split(features, prices, test_size=0.2, random_state=10)
+regr = LinearRegression()
+regr.fit(X_train, Y_train)
+print ('Training data r-squared', regr.score(X_train, Y_train))
+print ('Test data r-squared', regr.score(X_test, Y_test))
+print ('Intercept', regr.intercept_)
+pd.DataFrame(data=regr.coef_, index=X_train.columns, columns=['coef'])
 
