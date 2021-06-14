@@ -1,1 +1,51 @@
+//1.1
+#include <iostream>
+using namespace std;
+
+void Foo(int *pa){
+	(*pa)++;
+}
+
+int main() {
+	int a =0;
+	
+	cout<< "a1 \t" << a <<endl;
+	Foo(&a);
+	cout<< "a2 \t" << a <<endl;
+	return 0;
+}
+
+//1.2
+#include <iostream>
+using namespace std;
+
+void Foo(int A[], const int size){
+    int a = sizeof(A);
+    cout<<"a_Foo\t "<<a<<endl;
+    for (int i = 0; i < size; i++){
+        A[i] = rand() % 10;
+	}
+}
+
+void Print(int A[], const int size){
+    for (int i = 0; i < size; i++){
+		cout << A[i] << endl;
+	}
+}
+
+int main() {
+	setlocale(LC_ALL, "rus");
+	
+	const int SIZE = 10;
+	int M[SIZE];
+	
+	int a = sizeof(M);
+	cout<<"a_main\t "<<a<<endl;
+	
+	Foo(M,SIZE);
+	Print(M,SIZE);
+	return 0;
+}
+
+
 
