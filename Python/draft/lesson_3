@@ -87,3 +87,99 @@ print ('Test data r-squared', regr.score(X_test, Y_test))
 print ('Intercept', regr.intercept_)
 pd.DataFrame(data=regr.coef_, index=X_train.columns, columns=['coef'])
 
+#нужно пролагорифмировать данные для лучших показателей
+data['PRICE'].skew()
+
+data['PRICE'].min
+
+y_log = np.log(data['PRICE'])
+y_log.tail()
+
+y_log.skew()
+
+sns.distplot(y_log)
+plt.title(f'Log price with skew {y_log.skew()}')
+plt.show()
+
+#проверим на сколько изменились характеристики после прологарифмирования
+prices = data['PRICE']
+features = data.drop('PRICE', axis=1)
+X_train, X_test, Y_train, Y_test = train_test_split(features, prices, test_size=0.2, random_state=10)
+regr = LinearRegression()
+regr.fit(X_train, Y_train)
+print ('Training data r-squared', regr.score(X_train, Y_train))
+print ('Test data r-squared', regr.score(X_test, Y_test))
+print ('Intercept', regr.intercept_)
+pd.DataFrame(data=regr.coef_, index=X_train.columns, columns=['coef'])
+
+#на сколько важна характеристика через коэфицент стр-ся к нуль
+X_incl_const = sm.add_constant(X_train)
+model = sm.OLS(Y_train, X_incl_const)
+results = model.fit()
+pd.DataFrame({'coef' : results.params, 'p-value' : round(results.pvalues, 3 )})
+
+#проверим мультиколинеарность (на сколько параметр связан с др параметрами)
+#имеется формылы для вычисления (гугл)
+#построим лин. регрессию, но вм цены подст. параметр и попытемся предск-ть его
+#гл задача, чтобы vif был максимально мал (мин-м меньше 5)
+#data.head()
+variance_inflation_factor(exog=X_incl_const.values, exog_idx=1)
+
+vif = [variance_inflation_factor(exog=X_incl_const.values, exog_idx=1) for i in range(X_incl_const.shape[1])]
+pd.DataFrame({'coef_name' : X_incl_const.columns, 'vif' : np.around(vif,2)})
+
+#упростим с BIC()
+X_incl_const = sm.add_constant(X_train)
+model = sm.OLS(Y_train, X_incl_const)
+results = model.fit()
+org_coef = pd.DataFrame({'coef' : results.params, 'p-value' :
+                         round(results.pvalues, 3 )})
+print ('BIC is', results.bic)
+print('r-squared is', results.rsquared)
+
+#уберем из данных INDUS
+X_incl_const = sm.add_constant(X_train)
+X_incl_const = X_incl_const.drop(['INDUS'], axis =1)
+model = sm.OLS(Y_train, X_incl_const)
+results = model.fit()
+coef_minus_indus = pd.DataFrame({'coef' : results.params, 'p-value' : round(results.pvalues, 3 )})
+print ('BIC is', results.bic)
+print('r-squared is', results.rsquared)
+
+#уберем также и AGE (предшест-ий код убрать или в данном убр только AGE)
+X_incl_const = X_incl_const.drop(['INDUS', 'AGE'], axis =1)
+model = sm.OLS(Y_train, X_incl_const)
+results = model.fit()
+
+coef_minus_indus = pd.DataFrame({'coef' : results.params, 'p-value' : round(results.pvalues, 3 )})
+print ('BIC is', results.bic)
+print('r-squared is', results.rsquared)
+
+#Residuals(остатки) для интервалов
+prices = np.log(data['PRICE'])
+features = data.drop(['PRICE', 'INDUS', 'AGE'], axis= 1)
+X_train, X_test, Y_train, Y_test = train_test_split(features, prices, test_size=0.2, random_state=10)
+X_incl_const = sm.add_constant(X_train)
+model = sm.OLS(Y_train, X_incl_const)
+results = model.fit()
+plt.scatter(x=results.fittedvalues, y=results.resid, c='navy', alpha=0.6)
+plt.title('Residuals vs Fitted Values', fontsize=17)
+plt.xlabel('Predicted lig prices $\hat y_i$', fontsize=14)
+plt.ylabel('Residual', fontsize=14)
+plt.show()
+
+resid_mean = round(results.resid.mean(), 3)
+resid_skew = round(results.resid.skew(), 3)
+sns.distplot(results.resid, color = 'navy')
+plt.title(f'Log price model: residuals Skew () {resid_skew}) Mean ({resid_mean})')
+plt.show()
+
+#интервалы
+reduced_log_mse = round(results.mse_resid, 3)
+print ('2 CKO в логарифмах', 2*np.sqrt(reduced_log_mse))
+upper_bound = np.log(30)+2*np.sqrt(reduced_log_mse)
+print ('The upper bound in normsl prices is $', np.e**upper_bound * 1000)
+lower_bound = np.log(30)+2*np.sqrt(reduced_log_mse)
+print ('The lower bound in normsl prices is $', np.e**lower_bound * 1000)
+
+30000 + np.e**(2*np.sqrt(reduced_log_mse))*1000
