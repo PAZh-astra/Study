@@ -1,1 +1,72 @@
+import pandas as pd
 
+train = pd.read_csv('train.csv')
+test = pd.read_csv('test.csv')
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+data = pd.concat([train, test])
+
+#Data Analysis
+
+data.info()
+#для просмотра статистической информации
+data.describe(include='O')
+#остальные переменные
+data.describe()
+data.head()
+
+#Feature Engeeniring
+
+#проверка наличи нулевых значений
+data.isnull().sum()
+#корреляция (взаимосвязь двух или более величин)
+data[['Pclass', 'Survived']].groupby('Pclass').mean()
+
+data['Embarked'] = data['Embarked'].fillna('S')
+data[['Embarked', 'Survived']].groupby(['Embarked'], as_index=False).mean()
+
+data[['Sex', 'Survived']].groupby('Sex').mean().sort_values(by='Survived', ascending = False)
+
+#объединим в одну переменную
+data['FamilySize'] = data['SibSp'] + data['Parch']
+data[['FamilySize', 'Survived']].groupby('FamilySize').mean().sort_values(by='FamilySize', ascending = False)
+
+#так как не нашли линейную зависимость, преобразуем концепцию
+data['Alone'] = data['FamilySize'] == 0
+data[['Alone', 'Survived']].groupby('Alone').mean().sort_values(by='Alone', ascending = False)
+
+#разобьем на категории пресантии кол-во "заплативших за билет"
+data['Fare'] = data['Fare'].fillna(train['Fare'].median())
+data['CategoricalFare'] = pd.qcut(train['Fare'], 4, precision=0)
+data[['CategoricalFare',
+      'Survived']].groupby(['CategoricalFare']).mean().sort_values(by='CategoricalFare')#для возраста 
+age_mean = data['Age'].mean()
+age_std = data['Age'].std()
+null_values_count = data['Age'].isnull().count()
+age_null_random_list = np.random.randint(age_mean - age_std, age_mean + age_std,
+                                        size=null_values_count )
+
+data['Age'][np.isnan(data['Age'])] = age_null_random_list
+data['CategoricalAge'] = pd.cut(train['Age'], 5, precision=0)
+data[['CategoricalAge', 'Survived']].groupby('CategoricalAge').mean().sort_values(by='CategoricalAge', ascending = False)
+
+data.head()
+_________________________________________________________________________________
+#интервалы нужно преобразить в чеисла
+def rightValue (interval):
+  return interval.right
+
+  data['CategoricalAge'] = data['CategoricalAge'].apply(rightValue)
+  data['CategoricalFare'] = data['CategoricalFare'].apply(rightValue)
+  data.head()
+
+from sklearn.preprocessing import LabelEncoder
+encoder = LabelEncoder()
+data[['CategoricalFare']] = encoder.fit_transform(data[['CategoricalFare']])
+data[['CategoricalAge']] = encoder.fit_transform(data[['CategoricalAge']])
+data[['Alone']] = encoder.fit_transform(data[['Alone']])
+data.head()
+_________________________________________________________________________________
+...
+  
